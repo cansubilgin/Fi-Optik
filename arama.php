@@ -53,13 +53,20 @@ if (isset($_POST['arama'])) {
 
 
 				while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {
+					$urun_id=$uruncek['urun_id'];
+					$urunfotosor=$db->prepare("SELECT * FROM urunfoto where urun_id=:urun_id  ");
+					$urunfotosor->execute(array(
+						'urun_id' => $urun_id
+						));
+
+					$urunfotocek=$urunfotosor->fetch(PDO::FETCH_ASSOC);
 					?>
 
 					<div class="col-md-4">
 						<div class="productwrap">
 							<div class="pr-img">
 								<div class="hot"></div>
-								<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"]?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+								<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"]?>"><img src="<?php echo $urunfotocek['urunfoto_resimyol'] ?>" alt="" class="img-responsive"></a>
 								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice"><?php echo $uruncek['urun_fiyat']*1.50 ?> TL</span><?php echo $uruncek['urun_fiyat'] ?> TL</span></div></div>
 							</div>
 							<span class="smalltitle"><a href="product.htm"><?php echo $uruncek['urun_ad'] ?></a></span>

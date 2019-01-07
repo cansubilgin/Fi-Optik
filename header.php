@@ -34,7 +34,6 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
     <meta name="keywords" content="<?php echo $ayarcek['ayar_keywords'] ?>">
     <meta name="author" content="<?php echo $ayarcek['ayar_author'] ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
 
 
     <!-- Fonts -->
@@ -208,7 +207,7 @@ echo "sayfa-".seo($menucek['menu_ad']) ;
 
 
 					<div class="col-md-2 machart">
-						<button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Alışveriş Sepeti</span>|<span class="allprice">$0.00</span></button>
+						<button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Alışveriş Sepeti</span>|<span class="allprice"></span></button>
 						<div class="popcart">
 							<table class="table table-condensed popcart-inner">
 								<tbody>
@@ -228,14 +227,20 @@ echo "sayfa-".seo($menucek['menu_ad']) ;
 										));
 
 										$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
+										$urunfotosor=$db->prepare("SELECT * FROM urunfoto where urun_id=:urun_id order by urunfoto_sira ASC limit 1 ");
+										$urunfotosor->execute(array(
+											'urun_id' => $urun_id
+											));
+					
+										$urunfotocek=$urunfotosor->fetch(PDO::FETCH_ASSOC);
 										$toplam_fiyat+=$uruncek['urun_fiyat']*$sepetcek['urun_adet'];
 										?>
 
 										<tr>
 										<td>
-										<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
+										<a href=""><img src="<?php echo $urunfotocek['urunfoto_resimyol'] ?>" alt="" class="img-responsive"></a>
 										</td>
-										<td><a href="product.htm"><?php echo $uruncek['urun_ad'] ?></a></td>
+										<td><a href=""><?php echo $uruncek['urun_ad'] ?></a></td>
 										<td><?php echo $sepetcek['urun_adet'] ?> Adet</td>
 										<td><?php echo $uruncek['urun_fiyat'] ?></td>
 										<td><!--<a href=""><i class="fa fa-times-circle fa-2x"></i></a>--></td>

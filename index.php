@@ -88,72 +88,40 @@ include 'header.php';
 				<a href="hakkimizda" class="btn btn-default btn-red btn-sm">Devamını Oku</a>
 
 				<div class="title-bg">
-					<div class="title">Lastest Products</div>
+					<div class="title">Son Eklenen Ürünler</div>
 				</div>
+				<?php 
+			$urunsor=$db->prepare("SELECT * FROM urun order by urun_zaman desc limit 1  ");
+			$urunsor->execute(array());
+
+			
+			while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {
+
+
+					$urun_id=$uruncek['urun_id'];
+					$urunfotosor=$db->prepare("SELECT * FROM urunfoto where urun_id=:urun_id order by urunfoto_sira ASC ");
+					$urunfotosor->execute(array(
+						'urun_id' => $urun_id
+						));
+
+					$urunfotocek=$urunfotosor->fetch(PDO::FETCH_ASSOC);
+
+					
+				?>
 				<div class="row prdct"><!--Products-->
 					<div class="col-md-4">
 						<div class="productwrap">
 							<div class="pr-img">
-								<a href="product.htm"><img src="images\sample-2.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice">$314</span>$199</span></div></div>
+								<a href="product.htm"><img src="<?php echo $urunfotocek['urunfoto_resimyol'] ?>" alt="" class="img-responsive"></a>
+								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span><?php echo $uruncek['urun_fiyat'] ?></span></div></div>
 							</div>
-							<span class="smalltitle"><a href="product.htm">Black Shoes</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
+							<span class="smalltitle"><a href="product.htm"><?php echo $uruncek['urun_ad'] ?></a></span>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-							<div class="pr-img">
-								<a href="product.htm"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag"><div class="inner">$199</div></div>
-							</div>
-							<span class="smalltitle"><a href="product.htm">Nikon Camera</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-							<div class="pr-img">
-								<a href="product.htm"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag"><div class="inner">$199</div></div>
-							</div>
-							<span class="smalltitle"><a href="product.htm">Red T- Shirt</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-							<div class="pr-img">
-								<a href="product.htm"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag"><div class="inner">$199</div></div>
-							</div>
-							<span class="smalltitle"><a href="product.htm">Nikon Camera</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-							<div class="pr-img">
-								<a href="product.htm"><img src="images\sample-2.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag"><div class="inner">$199</div></div>
-							</div>
-							<span class="smalltitle"><a href="product.htm">Black Shoes</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="productwrap">
-							<div class="pr-img">
-								<a href="product.htm"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag"><div class="inner">$199</div></div>
-							</div>
-							<span class="smalltitle"><a href="product.htm">Red T-Shirt</a></span>
-							<span class="smalldesc">Item no.: 1000</span>
-						</div>
-					</div>
+					<?php } ?>
 				</div><!--Products-->
-				<div class="spacer"></div>
-			</div><!--Main content-->
+			<div class="spacer"></div>
+					</div><!--Main content-->
 
 			<!-- Siderbar buraya gelecek -->
 			<?php include 'sidebar.php' ?>

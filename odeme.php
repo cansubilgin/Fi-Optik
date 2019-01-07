@@ -48,13 +48,19 @@
 							));
 
 						$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
+						$urunfotosor=$db->prepare("SELECT * FROM urunfoto where urun_id=:urun_id order by urunfoto_sira ASC limit 1 ");
+						$urunfotosor->execute(array(
+							'urun_id' => $urun_id
+							));
+	
+						$urunfotocek=$urunfotosor->fetch(PDO::FETCH_ASSOC);
 						//$toplam_fiyat+=$uruncek['urun_fiyat']*$sepetcek['urun_adet'];
 						?>
 
 						<!--<input type="hidden" name="urun_id[]" value="<?php echo $uruncek['urun_id']; ?>">-->
 
 						<tr>
-							<td><img src="images\demo-img.jpg" width="100" alt=""></td>
+							<td><img src="<?php echo $urunfotocek['urunfoto_resimyol'] ?>" width="100" alt=""></td>
 							<td><?php echo $uruncek['urun_ad'] ?></td>
 							<td><?php echo $uruncek['urun_id'] ?></td>
 							<td><?php echo $sepetcek['urun_adet'] ?></td>
@@ -98,9 +104,14 @@
 				
 
 				<div class="tab-pane fade active in" id="desc">
-					<p>
-						Entegrasyon Tamamlanmadı.
-					</p>
+					<div class="row">
+						
+							<?php include 'iyzico/buyer.php'; ?>
+
+							<div  id="iyzipay-checkout-form" class="responsive"></div>
+
+						
+					</div>
 				</div>
 
 
@@ -119,7 +130,7 @@
 
 					
 					<input type="radio" name="siparis_banka" value="<?php echo $bankacek['banka_ad'] ?>">
-					<?php echo $bankacek['banka_ad']; echo " ";?><br>
+					<?php echo $bankacek['banka_ad']; echo " "; echo $bankacek['banka_iban'];?><br>
 
 
 					

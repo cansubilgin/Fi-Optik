@@ -45,7 +45,7 @@
 					$urunsor->execute(array(
 						'urun_id' => $urun_id
 						));
-
+						
 					$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
 
 					//echo $topla=$uruncek['urun_fiyat']*$sepetcek['urun_adet'];
@@ -53,7 +53,7 @@
 
 					<tr>
 						<td><form><input type="checkbox"></form></td>
-						<td><img src="images\demo-img.jpg" width="100" alt=""></td>
+						<td><img src="<?php echo $urunfotocek['urunfoto_resimyol']  ?>" width="100" alt=""></td>
 						<td><?php echo $uruncek['urun_ad'] ?></td>
 						<td><?php echo $uruncek['urun_id'] ?></td>
 						<td><form><input type="text" class="form-control quantity" value="<?php echo $sepetcek['urun_adet'] ?>"></form></td>

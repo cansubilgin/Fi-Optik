@@ -598,11 +598,12 @@ if (isset($_POST['kullanicikaydet'])) {
 	echo $kullanici_passwordone=$_POST['kullanici_passwordone']; echo "<br>";
 	echo $kullanici_passwordtwo=$_POST['kullanici_passwordtwo']; echo "<br>";
 
-	
+	if (strlen($kullanici_ad)>=15){
 	if ($kullanici_passwordone==$kullanici_passwordtwo) {
 
 
 		if (strlen($kullanici_passwordone)>=6) {
+
 
 
 // Başlangıç
@@ -684,6 +685,11 @@ if (isset($_POST['kullanicikaydet'])) {
 
 
 		header("Location:../../register.php?durum=farklisifre");
+	}
+
+	}	
+	else {
+		header("Location:../../register.php?durum=isimhata");
 	}
 	
 

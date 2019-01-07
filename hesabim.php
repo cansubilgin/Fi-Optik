@@ -62,10 +62,11 @@
 						
 						<input type="text" class="form-control"  required="" name="kullanici_ad" value="<?php echo $kullanicicek['kullanici_ad'] ?>">
 					</div>
- 	<div class="form-group dob">
+ 					<br><br><br>
 					<div class="col-sm-12">
 						
 						<input type="text" class="form-control"  required="" name="kullanici_soyad" value="<?php echo $kullanicicek['kullanici_soyad'] ?>">
+				
 					</div>
 					
 				</div>

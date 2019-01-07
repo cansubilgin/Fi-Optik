@@ -103,32 +103,34 @@ function kategori($kategori_id, $kategori_ad, $kategori_ust) {
 	</div>
 
 	<div class="title-bg">
-		<div class="title">Best Seller</div>
+		<div class="title">En Çok Satanlar</div>
 	</div>
+	<?php
+	$urunsor=$db->prepare("SELECT * FROM urun");
+	$urunsor->execute();
+	while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {
+
+		$urun_id=$uruncek['urun_id'];
+		$urunfotosor=$db->prepare("SELECT * FROM urunfoto where urun_id=:urun_id  ");
+		$urunfotosor->execute(array(
+			'urun_id' => $urun_id
+			));
+
+		$urunfotocek=$urunfotosor->fetch(PDO::FETCH_ASSOC);
+
+	?>
 	<div class="best-seller">
 		<ul>
 			<li class="clearfix">
-				<a href="#"><img src="images\demo-img.jpg" alt="" class="img-responsive mini"></a>
+				<a href="#"><img src="<?php echo $urunfotocek['urunfoto_resimyol'] ?>" alt="" class="img-responsive mini"></a>
 				<div class="mini-meta">
-					<a href="#" class="smalltitle2">Panasonic M3</a>
-					<p class="smallprice2">Price : $122</p>
+					<a href="#" class="smalltitle2"><?php echo $uruncek['urun_ad'] ?></a>
+					<p class="smallprice2"><?php echo $uruncek['urun_fiyat'] ?></p>
 				</div>
 			</li>
-			<li class="clearfix">
-				<a href="#"><img src="images\demo-img.jpg" alt="" class="img-responsive mini"></a>
-				<div class="mini-meta">
-					<a href="#" class="smalltitle2">Panasonic M3</a>
-					<p class="smallprice2">Price : $122</p>
-				</div>
-			</li>
-			<li class="clearfix">
-				<a href="#"><img src="images\demo-img.jpg" alt="" class="img-responsive mini"></a>
-				<div class="mini-meta">
-					<a href="#" class="smalltitle2">Panasonic M3</a>
-					<p class="smallprice2">Price : $122</p>
-				</div>
-			</li>
-		</ul>
-	</div>
+		
+		</ul>	
+	</div>			<?php } ?>	
+
 
 			</div><!--sidebar-->

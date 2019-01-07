@@ -60,28 +60,28 @@
 				<div class="form-group dob">
 					<div class="col-sm-12">
 						
-						<input type="text" class="form-control"  required="" name="kullanici_ad" placeholder="Adınızı Giriniz...">
+						<input type="text" class="form-control"  required="" name="kullanici_ad" maxlength="15" placeholder="Adınızı Giriniz...">
 					</div>
 					
 				</div>
                 <div class="form-group dob">
 					<div class="col-sm-12">
 						
-						<input type="text" class="form-control"  required="" name="kullanici_soyad" placeholder="Soyadınızı Giriniz...">
+						<input type="text" class="form-control"  required="" name="kullanici_soyad" maxlength="15" placeholder="Soyadınızı Giriniz...">
 					</div>
 					
 				</div>
 				<div class="form-group">
 					<div class="col-sm-12">
-						<input type="email" class="form-control" required="" name="kullanici_mail"  placeholder="Dikkat! Mail adresiniz kullanıcı adınız olacaktır.">
+						<input type="email" class="form-control" required="" name="kullanici_mail" maxlength="20"  placeholder="Dikkat! Mail adresiniz kullanıcı adınız olacaktır.">
 					</div>
 				</div>
 				<div class="form-group dob">
 					<div class="col-sm-6">
-						<input type="password" class="form-control" name="kullanici_passwordone"    placeholder="Şifrenizi Giriniz...">
+						<input type="password" class="form-control" name="kullanici_passwordone" maxlength="15"   placeholder="Şifrenizi Giriniz...">
 					</div>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" name="kullanici_passwordtwo"   placeholder="Şifrenizi Tekrar Giriniz...">
+						<input type="password" class="form-control" name="kullanici_passwordtwo" maxlength="15"  placeholder="Şifrenizi Tekrar Giriniz...">
 					</div>
 				</div>
 
