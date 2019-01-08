@@ -8,89 +8,39 @@
 		<ul>
 			
 					<?php 
+			$kategorisor=$db->prepare("SELECT * FROM kategori where kategori_durum=:durum order by kategori_sira ASC");
+			$kategorisor->execute(array(
+				'durum' => 1,
+			));
 
-//bütün kayıtları bir kereye mahsus olmak üzere listeliyoruz; daha doğrusu, bir diziye aktarmak için verileri çekiyoruz
+ while($kategoricek=$kategorisor->fetch(PDO::FETCH_ASSOC)) { 
 
-			$query = "SELECT * FROM kategori order by kategori_id";
-			$goster = $db->prepare($query);
-$goster->execute(); //queriyi tetikliyor
-
- $toplamSatirSayisi = $goster->rowCount(); //malumunuz üzere sorgudan dönen satır sayısını öğreniyoruz
- 
-$tumSonuclar = $goster->fetchAll(); //DB'deki bütün satırları ve sutunları $tumSonuclar değişkenine dizi şeklinde aktarıyoruz
-
-
-//alt kategorisi olmayan kategoriin sayısını öğreniyoruz:
-$altKategoriSayisi = 0;
-for ($i = 0; $i < $toplamSatirSayisi; $i++) {
-	if ($tumSonuclar[$i]['kategori_ust'] == "0") {
-		$altKategoriSayisi++;
-	}
-}
-
-
-
-for ($i = 0; $i < $toplamSatirSayisi; $i++) {
-	if ($tumSonuclar[$i]['kategori_ust'] == "0") {
-		kategori($tumSonuclar[$i]['kategori_id'], $tumSonuclar[$i]['kategori_ad'], $tumSonuclar[$i]['kategori_ust']);
-	}
-}
-
-
-
-function kategori($kategori_id, $kategori_ad, $kategori_ust) {
-
-	global $tumSonuclar;
-	global $toplamSatirSayisi;
-
-    //kategorinin, alt kategori sayısını öğreniyoruz:
-	$altKategoriSayisi = 0;
-	for ($i = 0; $i < $toplamSatirSayisi; $i++) {
-		if ($tumSonuclar[$i]['kategori_ust'] == $kategori_id) {
-			$altKategoriSayisi++;
-		}
-	}
-    ///////////////////////////////////////////
-
+	$kategori_id=$kategoricek['kategori_id'];
 	?>
 
-	<!-- Burda Başlıyoruz ana gövde -->
 
-	<li>
+	<li><a href="kategoriler-<?=seo($kategoricek['kategori_ad'])."-".$kategoricek['kategori_id'] ?>"><?php echo $kategoricek['kategori_ad'] ?><span>(
 
-		<a href="kategori-<?=seo($kategori_ad) ?>"><?php echo $kategori_ad ?></a>
-		<?php 
-		if ($altKategoriSayisi > 0) {
-			echo "( $altKategoriSayisi )";
-		}
-		?>
+		
 	</a>
+	<?php 
 
-	<?php
+$urunsay=$db->prepare("SELECT COUNT(kategori_id) as say FROM urun where kategori_id=:id");
+$urunsay->execute(array(
+	'id' => $kategori_id
+));
 
-    if ($altKategoriSayisi > 0) { //alt kategorisi varsa onları da listele
-    	echo "<ul>";
+$saycek=$urunsay->fetch(PDO::FETCH_ASSOC);
 
-    	for ($i = 0; $i < $toplamSatirSayisi; $i++) {
+echo $saycek['say'];
 
-    		if ($tumSonuclar[$i]['kategori_ust'] == $kategori_id) {
-    			
-    			kategori($tumSonuclar[$i]['kategori_id'], $tumSonuclar[$i]['kategori_ad'], $tumSonuclar[$i]['kategori_ust']);
-    		}
-    	}
-
-    	echo "</ul>";
-    }
-    ?>
-
-
-
-</li> 
-<!-- Burda Başlıyoruz ana gövde -->
-
-<?php 
-}
 ?>
+
+)</span></a></li>
+
+
+<?php } ?>
+<!-- Burda Başlıyoruz ana gövde -->
 		</ul>
 	</div>
 
@@ -106,7 +56,7 @@ function kategori($kategori_id, $kategori_ad, $kategori_ust) {
 		<div class="title">En Çok Satanlar</div>
 	</div>
 	<?php
-	$urunsor=$db->prepare("SELECT * FROM urun");
+	$urunsor=$db->prepare("SELECT * FROM urun limit 3");
 	$urunsor->execute();
 	while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {
 

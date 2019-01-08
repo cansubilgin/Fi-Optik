@@ -21,8 +21,8 @@ include 'header.php';
 			<div class="title-bg">
 				<div class="title">Ürünler</div>
 				<div class="title-nav">
-					<a href="javascripti:void(0);"><i class="fa fa-th-large"></i>grid</a>
-					<a href="javascripti:void(0);"><i class="fa fa-bars"></i>List</a>
+				<!--	<a href="javascripti:void(0);"><i class="fa fa-th-large"></i>grid</a>
+					<a href="javascripti:void(0);"><i class="fa fa-bars"></i>List</a> -->
 				</div>
 			</div>
 			<div class="row prdct"><!--Products-->
@@ -30,7 +30,7 @@ include 'header.php';
 
 				<?php
 
-                     $sayfada = 6; // sayfada gösterilecek içerik miktarını belirtiyoruz.
+                     $sayfada = 12; // sayfada gösterilecek içerik miktarını belirtiyoruz.
                      $sorgu=$db->prepare("select * from kategori");
                      $sorgu->execute();
                      $toplam_icerik=$sorgu->rowCount();
@@ -86,7 +86,7 @@ include 'header.php';
                      while($uruncek=$urunsor->fetch(PDO::FETCH_ASSOC)) {
 
 						$urun_id=$uruncek['urun_id'];
-						$urunfotosor=$db->prepare("SELECT * FROM urunfoto where urun_id=:urun_id order by urunfoto_sira ASC limit 1 ");
+						$urunfotosor=$db->prepare("SELECT * FROM urunfoto where urun_id=:urun_id order by urunfoto_sira ASC 	 ");
 						$urunfotosor->execute(array(
 							'urun_id' => $urun_id
 							));
@@ -98,11 +98,11 @@ include 'header.php';
                      	<div class="col-md-4">
                      		<div class="productwrap">
                      			<div class="pr-img">
-                     				<div class="hot"></div>
+                     				<div class=""></div>
                      				<a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"]?>"><img src="<?php echo $urunfotocek['urunfoto_resimyol']  ?>" alt="" class="img-responsive"></a>
                      				<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice"><?php echo $uruncek['urun_fiyat']*1.50 ?> TL</span><?php echo $uruncek['urun_fiyat'] ?> TL</span></div></div>
                      			</div>
-                     			<span class="smalltitle"><a href="product.htm"><?php echo $uruncek['urun_ad'] ?></a></span>
+                     			<span class="smalltitle"><a href="urun-<?=seo($uruncek["urun_ad"]).'-'.$uruncek["urun_id"]?>"><?php echo $uruncek['urun_ad'] ?></a></span>
                      			<span class="smalldesc">Ürün Kodu.: <?php echo $uruncek['urun_id'] ?></span>
                      		</div>
                      	</div>

@@ -3,7 +3,7 @@
 			<div class="row">
 				<div class="col-md-4"><!--footer twitter widget-->
 					<div class="title-widget-bg">
-						<div class="title-widget">Twitter Updates</div>
+						<div class="title-widget">Twitter Güncellemeleri</div>
 					</div>
 					<ul class="tweets">
 						<li>Check out this great #themeforest item for you
@@ -14,11 +14,11 @@
 						<span>2 hours ago</span></li>
 					</ul>
 					<div class="clearfix"></div>
-					<a href="#" class="btn btn-default btn-follow"><i class="fa fa-twitter fa-2x"></i><div>Follow us on twitter</div></a>
+					<a href="#" class="btn btn-default btn-follow"><i class="fa fa-twitter fa-2x"></i><div>Twitter da takip edin</div></a>
 				</div><!--footer twitter widget-->
 				<div class="col-md-4"><!--footer newsletter widget-->
 					<div class="title-widget-bg">
-						<div class="title-widget">Newsletter Signup</div>
+						<div class="title-widget">Bültene üye ol</div>
 					</div>
 					<div class="newsletter">
 						<p>
@@ -26,16 +26,16 @@
 						</p>
 						<form role="form">
 							<div class="form-group">
-								<label>Your Email address</label>
+								<label>Mail Adresiniz</label>
 								<input type="email" class="form-control newstler-input" id="exampleInputEmail1" placeholder="Enter email">
-								<button class="btn btn-default btn-red btn-sm">Sign Up</button>
+								<button class="btn btn-default btn-red btn-sm">Uye Ol</button>
 							</div>
 						</form>
 					</div>
 				</div><!--footer newsletter widget-->
 				<div class="col-md-4"><!--footer contact widget-->
 					<div class="title-widget-bg">
-						<div class="title-widget-cursive">Shopping</div>
+						<div class="title-widget-cursive">Fİ OPTİK</div>
 					</div>
 					<ul class="contact-widget">
 						<li class="fphone"><?php echo $ayarcek['ayar_tel']; ?> <br> <?php echo $ayarcek['ayar_faks']; ?></li>
@@ -52,11 +52,11 @@
 			<div class="row">
 				<div class="col-md-9">
 					<ul class="footermenu"><!--footer nav-->
-						<li><a href="index-1.htm">Home</a></li>
+					<!--	<li><a href="index-1.htm">Home</a></li>
 						<li><a href="cart.htm">My Cart</a></li>
 						<li><a href="checkout.htm">Checkout</a></li>
 						<li><a href="order.htm">Completed Orders</a></li>
-						<li><a href="contact.htm">Contact us</a></li>
+						<li><a href="contact.htm">Contact us</a></li> --> 
 					</ul><!--footer nav-->
 					<div class="f-credit">&copy; <?php echo $ayarcek['ayar_author']; ?> <a href="#">Fi Optik</a></div>
 					<a href=""><div class="payment visa"></div></a>
@@ -65,7 +65,7 @@
 					<a href=""><div class="payment nh"></div></a>
 				</div>
 				<div class="col-md-3"><!--footer Share-->
-					<div class="followon">Follow us on</div>
+					<div class="followon">Takip Edin</div>
 					<div class="fsoc">
                         <a href="http://<?php echo $ayarcek['ayar_twitter']; ?> " class="ftwitter">twitter</a>
                         
