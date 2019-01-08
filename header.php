@@ -60,6 +60,7 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
     <![endif]-->
   </head>
   <body>
+
   <div id="wrapper">
 	<div class="header"><!--Header -->
 		<div class="container">
