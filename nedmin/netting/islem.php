@@ -598,7 +598,7 @@ if (isset($_POST['kullanicikaydet'])) {
 	echo $kullanici_passwordone=$_POST['kullanici_passwordone']; echo "<br>";
 	echo $kullanici_passwordtwo=$_POST['kullanici_passwordtwo']; echo "<br>";
 
-	if (strlen($kullanici_ad)>=15){
+	if (strlen($kullanici_ad)){
 	if ($kullanici_passwordone==$kullanici_passwordtwo) {
 
 
